@@ -773,6 +773,7 @@ export default createStore({
 			state.MarcadoresGlobGrand[marcador].mostrado = nuevoEstado
 		},
 		invertirEstado(state, variable){
+			console.log(variable, state[variable])
 			state[variable] = !state[variable]
 		},
 		refSVG(state, refSVGglob){
@@ -841,8 +842,16 @@ export default createStore({
 			state.eventosPab4Activos = !state.eventosPab4Activos
 		},
 		cerrarDesplegAbiertos(state, elActu){
+			console.log(elActu)
 			for (let key in state) {
 				if (key.startsWith('desP') && key !== elActu) {
+					state[key] = false
+				}
+			}
+		},
+		cerrarDespleg(state){
+			for (let key in state) {
+				if (key.startsWith('desP')) {
 					state[key] = false
 				}
 			}
@@ -857,6 +866,7 @@ export default createStore({
 		invertirValorVar({commit}, e){ // uso de "e" como $event recibiendo como parametros los atributos/datos que tiene ya sea un div, g... 
 			const vari = e.target.dataset.vari  // Recogiendo el valor necesario en este caso el dataset.vari
 			commit('cerrarDesplegAbiertos', vari)
+			commit('cerrarDespleg')
 			commit('invertirEstado', vari)
 		},
 		// Acción para referenciar el svg general del mapa y tenerlo almacenado para su uso. 
