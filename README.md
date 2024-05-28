@@ -14,7 +14,8 @@ Proyecto realizado para el Trabajo de Fin de Grado, haciendo uso de VUE como la 
 > Es necesario tener instalado en el sistema `Node`.
 
 - NodeJS Windows: [Instalación NodeJS Windows](https://nodejs.org/en)
-- NodeJS Linux: ```bash
+- NodeJS Linux: 
+```bash
 sudo apt install nodejs npm
 ```
 
