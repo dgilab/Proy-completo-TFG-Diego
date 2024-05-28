@@ -3,16 +3,24 @@
 Proyecto realizado para el Trabajo de Fin de Grado, haciendo uso de VUE como la aplicacion de la interfáz, NodeJS para la API, MySQL para la base de datos, y Docker para el despliegue temporal para presentación y compartido del proyecto
 
 
-## Requisitos para desplegar la aplicación
+## Requisitos IMPORTANTES para desplegar la aplicación
 
 > [!IMPORTANT]
 > Docker es completamente necesario para poder desplegar la aplicación.
 
-
-
 - Docker: [Instrucciones de instalación](https://docs.docker.com/get-docker/)
-- Docker Compose: [Instrucciones de instalación](https://docs.docker.com/compose/install/)
 
+> [!IMPORTANT]
+> Es necesario tener instalado en el sistema `Node`.
+
+- NodeJS Windows: [Instalación NodeJS Windows](https://nodejs.org/en)
+- NodeJS Linux: ```bash
+sudo apt install nodejs npm
+```
+
+
+
+- Docker Compose: [Instrucciones de instalación](https://docs.docker.com/compose/install/)
 No es necesario instalar Docker Compose además de Docker ya que está incluido en la instalación de Docker, pero lo añado por si necesitas informarte.
 
 
