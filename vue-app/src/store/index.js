@@ -2,7 +2,8 @@
 import { createStore } from 'vuex'
 
 export default createStore({
-	state: { // Centralización de todos los puntos / atributos... de los poligonos, rectangulos... para la generación del svg facilitando la lectura de los componentes.
+	state: {
+		// Centralización de todos los puntos / atributos... de los poligonos, rectangulos... para la generación del svg facilitando la lectura de los componentes.
 		salidaEm_Exterior: [
 			{
 				id: 'dse_E01', 
@@ -766,7 +767,8 @@ export default createStore({
 
 
 	},
-	mutations: { // Mutaciones para modificar estados 
+	mutations: {
+		// Mutaciones para modificar estados 
 		actualizarEstado(state, {marcador, nuevoEstado}){
 			state.MarcadoresGlobGrand[marcador].mostrado = nuevoEstado
 		},
@@ -851,7 +853,7 @@ export default createStore({
 
 	}, // Los commit son para registrar los cambios de estado
 	actions: { // Actiones para realizar cambios en los componentes y manejar interacciones
-		 // Acción para invertir el valor de una variable y cerrar desplegables abiertos
+		// Acción para invertir el valor de una variable y cerrar desplegables abiertos
 		invertirValorVar({commit}, e){ // uso de "e" como $event recibiendo como parametros los atributos/datos que tiene ya sea un div, g... 
 			const vari = e.target.dataset.vari  // Recogiendo el valor necesario en este caso el dataset.vari
 			commit('cerrarDesplegAbiertos', vari)
@@ -1025,7 +1027,8 @@ export default createStore({
 		}
 
 	},
-	getters: { // Getters para acceder al estado/atributos y datos almacenados en el store para su uso en los componentes
+	getters: {
+		// Getters para acceder al estado/atributos y datos almacenados en el store para su uso en los componentes
 		RefSVG: state => state.referenciaSVGglob,
 
 		MCafep1: state => state.MarcP.MP1_2.MCafep1,
