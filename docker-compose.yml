@@ -1,0 +1,42 @@
+version: '3.8'
+
+volumes:
+  mysql-data:
+
+services:
+  frontend:
+    build:
+      context: ./vue-app
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./node-api
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+  
+  mysql:
+    platform: linux/x86_64
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: a9yh7bxs3I1I
+      MYSQL_DATABASE: bugs_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: a9yh7bxs3I1I
+    container_name: tfg-db-mysql    
+    # command: --init-file /docker-entrypoint-initdb.d/setup.sql 
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql 
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
