@@ -2,16 +2,19 @@
 
 Proyecto realizado para el Trabajo de Fin de Grado, haciendo uso de VUE como la aplicacion de la interfáz, NodeJS para la API, MySQL para la base de datos, y Docker para el despliegue temporal para presentación y compartido del proyecto
 
+
 ## Requisitos para desplegar la aplicación
 
 > [!IMPORTANT]
-> Es completamente necesario para poder desplegar la aplicación con Docker.
+> Docker es completamente necesario para poder desplegar la aplicación.
 
 
-No es necesario instalar Docker Compose además de Docker ya que está incluido en la instalación de Docker, pero lo añado por si necesitas informarte.
 
 - Docker: [Instrucciones de instalación](https://docs.docker.com/get-docker/)
 - Docker Compose: [Instrucciones de instalación](https://docs.docker.com/compose/install/)
+
+No es necesario instalar Docker Compose además de Docker ya que está incluido en la instalación de Docker, pero lo añado por si necesitas informarte.
+
 
 ## Instalación
 
@@ -27,6 +30,9 @@ git clone https://github.com/dgilab/Proy-completo-TFG-Diego.git
 cd proyecto-completo-tfg
 ```
 
+Continue con los siguientes pasos.
+
+
 ## Configuración
 
 No es necesaria ninguna configuración ya que los datos de pruebas son públicos, tanto en el .env de node, como en las configuraciones de los contenedores dentro del compose.
@@ -34,6 +40,7 @@ No es necesaria ninguna configuración ya que los datos de pruebas son públicos
 Igualmente tiene el archivo de ejemplo dentro de node-api llamado `.env.example`.
 
 Si lo necesita puede renombrar el archivo quitandole el `.example`.
+
 
 ## Uso y Despliegue
 
@@ -63,3 +70,12 @@ Para detener la aplicación y apagar los contenedores Docker.
 > [!WARNING]
 > Hacer uso de la fuerza bruta al detener el contenedor, puede ocasionar errores.
 
+
+## Cambiar el estado de un bug
+
+Si en su BD ya contiene algún bug, puede hacer un put a [http://localhost:3000](http://localhost:3000) agregado `\id` donde `id` hace referencia al id del bug.
+
+Puede hacer uso de Thunder Client para hacer la peticion. 
+
+Ejemplo:
+`http://localhost:3000\1`
