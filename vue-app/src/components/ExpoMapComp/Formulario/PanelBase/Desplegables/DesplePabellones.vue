@@ -1,6 +1,6 @@
 <template>
 	<div class="DesplePabellones">
-        <div class="VerEnMapaDes" :data-idRela="idRelacMap" @click="zoomIn(idRelacMap)"  :class="{ 'disabled': HayZoomActivo }">
+        <div class="VerEnMapaDes" :data-idRela="idRelacMap" @click="zoomIn(idRelacMap)" :class="{ 'disabled': HayZoomActivo }">
             <p><i class="fa-solid fa-magnifying-glass-plus"></i>  Ampliar</p>
         </div>
         <div class="VerEnMapaDes" :data-idRela="idRelacMap" :data-vari="variMost" @click="zoomOut(idRelacMap), aplicarInvertir($event)" :class="{ 'disabled': !HayZoomActivo }">

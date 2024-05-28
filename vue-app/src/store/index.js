@@ -773,7 +773,6 @@ export default createStore({
 			state.MarcadoresGlobGrand[marcador].mostrado = nuevoEstado
 		},
 		invertirEstado(state, variable){
-			console.log(variable, state[variable])
 			state[variable] = !state[variable]
 		},
 		refSVG(state, refSVGglob){
@@ -842,7 +841,6 @@ export default createStore({
 			state.eventosPab4Activos = !state.eventosPab4Activos
 		},
 		cerrarDesplegAbiertos(state, elActu){
-			console.log(elActu)
 			for (let key in state) {
 				if (key.startsWith('desP') && key !== elActu) {
 					state[key] = false
