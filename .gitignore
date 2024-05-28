@@ -2,8 +2,9 @@
 node_modules
 /dist
 
-# Ignorar node_modules de vue
+# Ignorar node_modules y .env de vue
 vue-app/node_modules/
+vue-app/.env
 
 # Ignorar node_modules de node
 node-api/node_modules/
