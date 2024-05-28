@@ -6,20 +6,12 @@ import axios from 'axios';
 
 const app = createApp(App);
 
-// Configuración de Axios
+// Configuración de Axios como prop global para solicitudes http
 app.config.globalProperties.$http = axios.create({
-    baseURL: 'http://localhost:3000'
-});
+    baseURL: 'http://localhost:3000' // Direccion para las peticiones a la api
+})
 
 app.use(store);
 app.use(router);
 
 app.mount('#app');
-
-// import { createApp } from 'vue'
-// import App from './App.vue'
-// import router from './router'
-// import store from './store'
-
-
-// createApp(App).use(store).use(router).mount('#app')

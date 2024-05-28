@@ -24,14 +24,14 @@ export default {
 	},
 	methods: {
 		...mapActions([ 'valorInicial']),
-		actuEstadoServicios(){
+		actuEstadoServicios(){ // Prepara los servicios antes de cerrar la página para evitar pérdida de datos
 			this.valorInicial(false)
 		}
 	},
-	mounted(){
+	mounted(){ // Al cargar el componente, registra un evento para preparar los servicios antes de cerrar la página
 		window.addEventListener('beforeunload', this.actuEstadoServicios)
 	},
-	beforeUnmount() {
+	beforeUnmount() {// Antes de desmontar el componente, elimina el registro del evento para evitar problemas de memoria
 		window.removeEventListener('beforeunload', this.actuEstadoServicios);
 	},
 }

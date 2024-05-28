@@ -4,7 +4,7 @@
 	</div>
 </template>
 
-<style lang="scss">
+<style lang="scss"> // Definición de estilos globales para la web, al ser el archivo "principal", el resto de subcomponentes, heredan estos estilos
 :root{
 
 	--build-color-black: #000000;
@@ -49,9 +49,11 @@
 *{
 	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-*,
-*::before,
-*::after {
+
+// Se aplica box-shizing: border-box a todos los elementos y psudo-elementos antes y despues de ellso
+*, // Todos los elementos
+*::before, // Sel todos los psudo-elementos '::before' de todos los documentos
+*::after { // Sel todos los psudo-elementos '::after' de todos los documentos
 	box-sizing: border-box;
 }
 

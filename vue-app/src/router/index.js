@@ -6,11 +6,6 @@ const routes = [
     name: 'global-map',
     component: () => import('../views/HomeView.vue')
   },
-  {
-    path: '/bcbugs',
-    name: 'bugs-view',
-    component: () => import('../views/BugsView.vue')
-  },
 ]
 
 const router = createRouter({

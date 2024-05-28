@@ -2,7 +2,7 @@
 import { createStore } from 'vuex'
 
 export default createStore({
-	state: {
+	state: { // Centralización de todos los puntos / atributos... de los poligonos, rectangulos... para la generación del svg facilitando la lectura de los componentes.
 		salidaEm_Exterior: [
 			{
 				id: 'dse_E01', 
@@ -733,6 +733,7 @@ export default createStore({
 
 		},
 
+		// Estados para diferentes usos en los componentes
 		referenciaSVGglob: null, 
 
 		hoverActivo: false,
@@ -765,7 +766,7 @@ export default createStore({
 
 
 	},
-	mutations: {
+	mutations: { // Mutaciones para modificar estados 
 		actualizarEstado(state, {marcador, nuevoEstado}){
 			state.MarcadoresGlobGrand[marcador].mostrado = nuevoEstado
 		},
@@ -848,23 +849,27 @@ export default createStore({
 			state.usoCommit = !state.usoCommit
 		}
 
-	},
-	actions: {
-		invertirValorVar({commit}, e){
-			const vari = e.target.dataset.vari
+	}, // Los commit son para registrar los cambios de estado
+	actions: { // Actiones para realizar cambios en los componentes y manejar interacciones
+		 // Acción para invertir el valor de una variable y cerrar desplegables abiertos
+		invertirValorVar({commit}, e){ // uso de "e" como $event recibiendo como parametros los atributos/datos que tiene ya sea un div, g... 
+			const vari = e.target.dataset.vari  // Recogiendo el valor necesario en este caso el dataset.vari
 			commit('cerrarDesplegAbiertos', vari)
 			commit('invertirEstado', vari)
 		},
+		// Acción para referenciar el svg general del mapa y tenerlo almacenado para su uso. 
 		referenciarSVG({ commit }, ref){
 			if(this.state.referenciaSVGglob == null){
 				commit('refSVG', ref)
 			}
 		},
+		// Acción para manejar el evento hover anteriormente lo usaba para agregar o quitar estilos/atributos 
 		eventHover({ commit }, e) {
 			commit('activarHover', !this.state.hoverActivo)
-			e.target.classList.toggle('hover_Base', this.state.hoverActivo) // va añadiendose o quitandose dependiendo si se hace hover
+			e.target.classList.toggle('hover_Base', this.state.hoverActivo) // va añadiendose o quitandose dependiendo si se hace hover como true/false
 
 		},
+		// Acción para mostrar o ocultar elementos como los lavabos / salidas de emergencia / Food Trucks según el evento de click
 		mostrarInteres({ commit }, e) {
 			if(e.target.id == 'lavPubli'){
 				commit('mostrarLavabos', !this.state.MostLabavos)
@@ -877,9 +882,11 @@ export default createStore({
 
 			}
 		},
+		// Acción para restablecer el valor inicial de una variable
 		valorInicial({ commit }, valorOriginal) {
 			commit('volverEstadoOriginal', valorOriginal)
 		},
+		// Acción para manejar la visualización de un elemento en el mapa y realizar zoom
 		verFTenelMapa({ commit }, eFormFT){
 			const IDpuestoFT = document.getElementById(eFormFT.data_id)
 			const ClasspuestoFT = document.querySelectorAll('.'+IDpuestoFT.classList)
@@ -902,7 +909,8 @@ export default createStore({
 			const VerEnMapaFt = !this.state.VerEnMapaFt
 			commit('mostrarFTenelMapa', VerEnMapaFt)
 		},
-		zoomIn({ commit }, e){ // EN DESARROLLO
+		// Acción para realizar zoom en un elemento específico del mapa
+		zoomIn({ commit }, e){
 			var mapa = this.state.referenciaSVGglob
 			var pabSelected
 			
@@ -911,14 +919,14 @@ export default createStore({
 			} else if(e && e.target){
 				pabSelected = mapa.getElementById(e.target.id);
 			}
-			var rect = pabSelected.getBoundingClientRect()
+			var rect = pabSelected.getBoundingClientRect() // Obtiene la posición y dimensiones de un elemento en la ventana del navegador
 			
 			var cX = rect.left + rect.width / 2
 			var cY = rect.top + rect.height / 2
 			
 			var escalado = 2.5
 			
-			var puntos_defecto = {
+			var puntos_defecto = { // Definicion de los puntos X e Y para poder hacer el zoom
 				bp1: { x: 2.30, y: 2.21 },
 				bp2: { x: 3.00, y: 2.21 },
 				bp3: { x: 2.30, y: 3.19 },
@@ -972,7 +980,8 @@ export default createStore({
 				commit('mostrarMP4', false)
 			}
 		},
-		zoomOut({ commit }, e){ // EN DESARROLLO
+		// Acción para realizar zoom out en el mapa
+		zoomOut({ commit }, e){
 			var mapa = this.state.referenciaSVGglob
 			e.target
 			commit('zoomed', false);
@@ -988,6 +997,7 @@ export default createStore({
 			commit('habilitarEventosPB3')
 			commit('habilitarEventosPB4')
 		},
+		// Acción para invertir el estado de una flecha / reestablecer su valor
 		invertFlecha({commit}, e){
 			e.target
 			commit('invertirEstado', this.state.desP1)
@@ -995,6 +1005,7 @@ export default createStore({
 			commit('invertirEstado', this.state.desP3)
 			commit('invertirEstado', this.state.desP4)
 		},
+		// Acción para mostrar u ocultar marcadores de stands
 		mostrarMarcStands({commit}, id){
 			commit('usoCommit')
 			var idMod = id.replace('_d', '')
@@ -1014,7 +1025,7 @@ export default createStore({
 		}
 
 	},
-	getters: {
+	getters: { // Getters para acceder al estado/atributos y datos almacenados en el store para su uso en los componentes
 		RefSVG: state => state.referenciaSVGglob,
 
 		MCafep1: state => state.MarcP.MP1_2.MCafep1,
