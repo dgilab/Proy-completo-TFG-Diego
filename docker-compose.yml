@@ -1,42 +1,47 @@
+# Versión de docker Compose utilizado para la configuracion del proyecto
 version: '3.8'
 
+# Volumen para almacenar los datos de MySQL
 volumes:
   mysql-data:
 
+# Definición de los servicios, que son el frontend - vue-app, backend - node-api y BD - mysql
 services:
   frontend:
     build:
-      context: ./vue-app
+      context: ./vue-app # Ubicación de la aplicación de vue
       dockerfile: Dockerfile
     container_name: frontend
-    ports:
+    ports: # Puerto en el que se despliega la aplicación del frontend
       - "8080:80"
-    depends_on:
+    depends_on: # Dependencia del frontend, se ejecutará una vez que backend esté desplegado
       - backend
 
   backend:
     build:
-      context: ./node-api
+      context: ./node-api # Ubicación de la aplicación de node
       dockerfile: Dockerfile
     container_name: backend
-    ports:
+    ports: # Puerto en el que se despliega la aplicación Backend
       - "3000:3000"
-    depends_on:
+    depends_on: # Dependencia del Backend, se desplegará una vez mysql ya esté desplegado
       - mysql
   
   mysql:
-    platform: linux/x86_64
-    image: mysql:8.0
+    platform: linux/x86_64 # Indicacion de la ISO/plataforma en la que se apoyará la imagen de mysql
+    image: mysql:8.0 # Uso de una imagen de mysql ya creada 
     restart: always
-    environment:
+    environment: # Definición de las variables de entorno
       MYSQL_ROOT_PASSWORD: a9yh7bxs3I1I
       MYSQL_DATABASE: bugs_db
       MYSQL_USER: admin
       MYSQL_PASSWORD: a9yh7bxs3I1I
-    container_name: tfg-db-mysql    
+    container_name: tfg-db-mysql
     # command: --init-file /docker-entrypoint-initdb.d/setup.sql 
     volumes:
-      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql 
+      # Archivo de inicialización SQL para configurar la base de datos
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # Volumen para persistir los datos de MySQL
       - mysql-data:/var/lib/mysql
-    ports:
+    ports: # Puerto en el que se despliega la Base de Datos
       - 3306:3306
