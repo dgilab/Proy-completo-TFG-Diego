@@ -109,6 +109,7 @@ export default {
 							<div>Bug: ${incidencia.bug}</div>
 							<div>Fecha: ${fechaFormateada}</div>
 							<div>Estado: ${estadoText}</div>
+							<div>Id: ${incidencia.id}</div>
 						</div>`
 					})
 					htmlContent += '</div>'

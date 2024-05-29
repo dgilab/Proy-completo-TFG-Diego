@@ -4,7 +4,7 @@ FROM node:14-alpine as build-stage
 # Establezco el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copia de los archivos de config de npm al directorio de trabajo
+# Copia de los archivos de configuracion/dependencias
 COPY package*.json ./
 
 # Instalar las dependecias
