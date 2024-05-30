@@ -45,3 +45,7 @@ services:
       - mysql-data:/var/lib/mysql
     ports: # Puerto en el que se despliega la Base de Datos
       - 3306:3306
+
+  message: # Mensaje que sale al completar la creación de los componentes y tras 5 segundos para asegurarse de mostrarse al montar todos.
+    image: alpine
+    command: sh -c "sleep 15 && echo '¡Los contenedores se han creado y están en funcionamiento! Puede acceder a la web ahora.'"
