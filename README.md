@@ -10,8 +10,10 @@ Proyecto realizado para el Trabajo de Fin de Grado, haciendo uso de VUE como la 
 
 - Docker: [Instrucciones de instalación](https://docs.docker.com/get-docker/)
 
-> [!IMPORTANT]
-> Es necesario tener instalado en el sistema `Node`.
+> [!NOTE]
+> Es Recomendable tener instalado en el sistema `Node`.
+
+Es recomendable tener instalado en el sistema `Node` ya que si quieres levantar tansolo el frontend, lo necesitarás.
 
 - NodeJS Windows: [Instalación NodeJS Windows](https://nodejs.org/en)
 - NodeJS Linux: 
